@@ -121,7 +121,7 @@ def predict_data(df):
     min_max_scaler=preprocessing.MinMaxScaler()
     loudness_scaled=min_max_scaler.fit_transform(loudness)
     data['loudness']=pd.DataFrame(loudness_scaled)
-    spotanalyst=load_model('D:\Projects\spotanalyst\prediction\model\songanalysis_model')
+    spotanalyst=load_model('..\prediction\model\songanalysis_model')
     predicted_df=predict_model(spotanalyst,data=data)
     predicted_df.to_csv(r'predicted_playlist_data.csv',index=False)
     return predicted_df
