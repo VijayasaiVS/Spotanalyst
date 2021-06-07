@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="{{url_for('static', filename='./img/spotanalyst.svg')}}"
+      type="image/icon"
+    />
+    <title>Spotanalyst</title>
+  </head>
+
+  <body>
+    <div>
+      <p>Connected to Spotify</p>
+      <p>Name: {{display_name}}</p>
+      <p>Username: {{username}}</p>
+      <img
+        src="{{dp}}"
+        class="dp"
+        alt="Display Photo"
+        width=auto
+        height=auto
+      />
+      <a href={{profile_url}} target="_blank">{{display_name}}</a>
+      <p>Followers: {{followers}}</p>
+    </div>
+    <div>
+      <!-- <button type="button">Connect to Spotify</button> -->
+      <h1>Current Song: {{current_playing}}</h1>
+      <h1>Current Song ID: {{current_id}}</h1>
+      <img
+        src="{{current_song_cover}}"
+        class="song_cover"
+        alt="Song Cover"
+        width="360px"
+        height="360px"
+      />
+      <form method="GET" action="/spotanalyst">
+        <button type="submit" id="reload_button">Reload</button>
+      </form>
+      <form method="GET" action="/analysis/playlist">
+      <button type="submit" id="analysis_button">Get Playlist</button></form>
+      <form method="GET" action="/analysis/library">
+        <button type="submit" id="analysis_button">Get Library Data</button></form>
+    </div>
+  </body>
+</html>

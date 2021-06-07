@@ -1,0 +1,15 @@
+prediction/final_data
+prediction/model
+prediction/spotify_data
+prediction.ipynb
+__pycache__
+auth.py
+extract_playlists_data.py
+plot.ipynb
+*.log
+webapp/server/final_data
+*.cache
+webapp/server/data
+*.env
+prediction/stream_history_clean.ipynb
+prediction/stream_history_predict.ipynb
