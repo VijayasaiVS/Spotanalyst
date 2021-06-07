@@ -4,13 +4,13 @@ from spotipy import SpotifyOAuth
 from dotenv import load_dotenv
 import json
 import pandas as pd
-from sklearn import preprocessing
 import pandas as pd
-import plotly.express as px
 from pycaret.classification import *
+from colorthief import ColorThief
+import urllib.request
 #Importing Secure Keys using ENV (dotenv) Module
 load_dotenv()
-
+imgloc= os.getenv('IMGLOC')
 #User Credentials
 client_id=os.getenv('SPOTIFY_CLIENT_ID')
 client_secret=os.getenv('SPOTIFY_CLIENT_SECRET')
@@ -41,9 +41,10 @@ def get_current_song(sp):
     if current_song==None:
         return None
     current_playing=current_song['item']['name']
+    current_artist=current_song["item"]["album"]["artists"][0]["name"]
     current_song_id= current_song['item']['uri']
     current_song_cover=current_song["item"]["album"]["images"][0]["url"]
-    return current_playing,current_song_id,current_song_cover
+    return current_playing,current_artist,current_song_id,current_song_cover
     # print(current_playing,current_song_id,current_song_cover)
     
 
@@ -137,3 +138,12 @@ def get_library(sp):
             saved_tracks.append(dict(name=i["track"]["name"],id=i["track"]["id"],artist=i["track"]["artists"][0]["name"]))
     
     return saved_tracks
+
+def imagecolor(imgurl):
+    urllib.request.urlretrieve(imgurl,imgloc)
+    color_thief = ColorThief(imgloc)
+    # get the dominant color
+    dominant_color = color_thief.get_color(quality=1)   
+    os.remove(imgloc)
+    hexcode= '#%02x%02x%02x' % dominant_color
+    return hexcode

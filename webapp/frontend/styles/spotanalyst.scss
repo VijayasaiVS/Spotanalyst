@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap");
+
+$primarycolor: #1db954;
+$alternateclr: #1e8843;
+
+// Light Theme Colors
+$secondarycolor: #c9e6ee;
+$tertiarycolor: #e9f2ce;
+$commoncolor: black;
+$bgcolor: #fff8dc;
+
+::selection {
+  background: $primarycolor;
+}
+$titletxt: 7rem;
+$secondarytxt: 3rem;
+$descriptiontxt: 1.5rem;
+@mixin description {
+  font-weight: 400;
+  font-size: $descriptiontxt;
+}
+@mixin heading {
+  color: $primarycolor;
+  text-align: center;
+  font-size: $secondarytxt;
+  letter-spacing: 0.8rem;
+}
+body {
+  padding: 2rem 2rem;
+  font-family: "Ubuntu", sans-serif;
+  margin: 0rem;
+  box-sizing: border-box;
+  background-color: $bgcolor;
+}
+.title {
+  text-align: center;
+  color: $primarycolor;
+  text-transform: uppercase;
+  font-size: 40px;
+  letter-spacing: 1.5rem;
+}
+//Scroll Bar
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $primarycolor;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $alternateclr;
+}
+
+.profile_info {
+  margin-right: 2rem;
+  .profile_pic {
+    height: 256px;
+    width: 256px;
+    border-radius: 100%;
+    border: 5px solid $primarycolor;
+  }
+}
+.profile_details {
+  display: inline-flex;
+  h2 {
+    margin-right: 2rem;
+    text-align: center;
+  }
+}
+.btn_family {
+  position: absolute;
+  display: inline-flex;
+  top: 25%;
+  left: 25%;
+  button[type="submit"] {
+    border-radius: 5rem;
+    background: $primarycolor;
+    border: none;
+    margin: 2rem;
+    padding: 1rem;
+    font-weight: bold;
+    height: 5rem;
+    width: 15rem;
+    font-size: larger;
+    text-transform: uppercase;
+  }
+  button[type="submit"]:hover {
+    transform: scale(1.2);
+    background-color: transparent;
+    border: 2px solid $primarycolor;
+    transition: 1s;
+  }
+}
+.title2{
+  color: $primarycolor;
+  text-transform: uppercase;
+}
+.song_info {
+  backdrop-filter: blur(40px);
+  border-radius: 20px;
+}
+.song_details {
+  display: flex;
+}
+.song_cover{
+  border-radius: 15px;
+}
+.current_song_details {
+  margin-left: 2rem;
+}

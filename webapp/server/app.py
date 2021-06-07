@@ -2,21 +2,14 @@ from flask import *
 from dotenv import load_dotenv
 import os
 import time
-from numpy.lib.function_base import extract
 import module as md
 import spotipy
 import pandas as pd
-import shutil
-from werkzeug.utils import secure_filename
-import json
 import chart_studio
 import chart_studio.plotly as py
 import chart_studio.tools as tls
 import plotly.express as px
-import spotipy.util as util
-from spotipy.oauth2 import SpotifyOAuth
 load_dotenv()
-
 
 username=os.getenv('PLOT_USERNAME')
 plot_api=os.getenv('PLOT_API')
@@ -65,9 +58,10 @@ def welcome():
     if not md.get_current_song(sp):
         return render_template('spotanalyst.html')
     else:
-        current_playing,current_song_id,current_song_cover=md.get_current_song(sp)
+        current_playing,current_artist,current_song_id,current_song_cover=md.get_current_song(sp)
         display_name,username,dp,profile_url,followers=md.get_userdetails(sp)
         session['username']=username
+        dominant_color=md.imagecolor(current_song_cover)
         # return current_song
         render_content={
                         'display_name':display_name,
@@ -76,8 +70,10 @@ def welcome():
                         'profile_url':profile_url,
                         'followers':followers,
                         'current_playing':current_playing,
+                        'current_artist':current_artist,
                         'current_id':current_song_id,
-                        'current_song_cover':current_song_cover
+                        'current_song_cover':current_song_cover,
+                        'dominant_color':dominant_color
                         }
         return render_template('spotanalyst.html',**render_content)
     
