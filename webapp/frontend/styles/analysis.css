@@ -38,40 +38,16 @@ body {
   background: #1e8843;
 }
 
-.profile_info {
-  margin-right: 2rem;
-}
-
-.profile_info .profile_pic {
-  height: 256px;
-  width: 256px;
-  border-radius: 100%;
-  border: 5px solid #1db954;
-}
-
-.profile_details {
+.btns {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-.profile_details h2 {
-  margin-right: 2rem;
-  text-align: center;
-}
-
-.btn_family {
-  position: absolute;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  top: 25%;
-  left: 25%;
-}
-
-.btn_family button[type="submit"] {
-  cursor: pointer;
+.btns button[type="submit"] {
   border-radius: 5rem;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
   background: #1db954;
   border: none;
   margin: 2rem;
@@ -81,39 +57,15 @@ body {
   width: 15rem;
   font-size: larger;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
-.btn_family button[type="submit"]:hover {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+.btns button[type="submit"]:hover {
+  -webkit-transform: scale(1);
+          transform: scale(1);
   background-color: transparent;
   border: 2px solid #1db954;
   -webkit-transition: 1s;
   transition: 1s;
 }
-
-.title2 {
-  color: #1db954;
-  text-transform: uppercase;
-}
-
-.song_info {
-  -webkit-backdrop-filter: blur(40px);
-          backdrop-filter: blur(40px);
-  border-radius: 20px;
-}
-
-.song_details {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.song_cover {
-  border-radius: 15px;
-}
-
-.current_song_details {
-  margin-left: 2rem;
-}
-/*# sourceMappingURL=spotanalyst.css.map */
+/*# sourceMappingURL=analysis.css.map */

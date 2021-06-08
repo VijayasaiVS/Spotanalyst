@@ -11,6 +11,7 @@ import urllib.request
 #Importing Secure Keys using ENV (dotenv) Module
 load_dotenv()
 imgloc= os.getenv('IMGLOC')
+modelloc=os.getenv('MODELLOC')
 #User Credentials
 client_id=os.getenv('SPOTIFY_CLIENT_ID')
 client_secret=os.getenv('SPOTIFY_CLIENT_SECRET')
@@ -122,9 +123,8 @@ def predict_data(df):
     min_max_scaler=preprocessing.MinMaxScaler()
     loudness_scaled=min_max_scaler.fit_transform(loudness)
     data['loudness']=pd.DataFrame(loudness_scaled)
-    spotanalyst=load_model('..\prediction\model\songanalysis_model')
+    spotanalyst=load_model(modelloc)
     predicted_df=predict_model(spotanalyst,data=data)
-    predicted_df.to_csv(r'predicted_playlist_data.csv',index=False)
     return predicted_df
 
 def get_library(sp):

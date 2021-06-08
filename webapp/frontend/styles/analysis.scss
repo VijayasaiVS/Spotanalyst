@@ -54,62 +54,26 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: $alternateclr;
 }
-
-.profile_info {
-  margin-right: 2rem;
-  .profile_pic {
-    height: 256px;
-    width: 256px;
-    border-radius: 100%;
-    border: 5px solid $primarycolor;
-  }
-}
-.profile_details {
+.btns{
   display: inline-flex;
-  h2 {
-    margin-right: 2rem;
-    text-align: center;
-  }
-}
-.btn_family {
-  position: absolute;
-  display: inline-flex;
-  top: 25%;
-  left: 25%;
-  button[type="submit"] {
-    cursor: pointer;
-    border-radius: 5rem;
-    background: $primarycolor;
-    border: none;
-    margin: 2rem;
-    padding: 1rem;
-    font-weight: bold;
-    height: 5rem;
-    width: 15rem;
-    font-size: larger;
-    text-transform: uppercase;
-  }
-  button[type="submit"]:hover {
-    transform: scale(1.2);
-    background-color: transparent;
-    border: 2px solid $primarycolor;
-    transition: 1s;
-  }
-}
-.title2{
-  color: $primarycolor;
+button[type="submit"] {
+  border-radius: 5rem;
+  transform: scale(0.8);
+  background: $primarycolor;
+  border: none;
+  margin: 2rem;
+  padding: 1rem;
+  font-weight: bold;
+  height: 5rem;
+  width: 15rem;
+  font-size: larger;
   text-transform: uppercase;
+  cursor: pointer;
 }
-.song_info {
-  backdrop-filter: blur(40px);
-  border-radius: 20px;
+button[type="submit"]:hover {
+  transform: scale(1);
+  background-color: transparent;
+  border: 2px solid $primarycolor;
+  transition: 1s;
 }
-.song_details {
-  display: flex;
-}
-.song_cover{
-  border-radius: 15px;
-}
-.current_song_details {
-  margin-left: 2rem;
 }
