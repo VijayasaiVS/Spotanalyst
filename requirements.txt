@@ -1,9 +1,10 @@
-chart-studio==1.1.0
-Flask==1.1.2
+Flask==2.0.1
+chart-studio
+colortheif
 numpy==1.19.5
-pandas==1.2.2
+pandas
 plotly==4.14.3
-pycaret==2.3.0
-python-dotenv==0.15.0
-spotipy==2.16.1
-Werkzeug==1.0.1
+pycaret==2.3.1
+python-dotenv==0.17.1
+spotipy==2.18.0
+Werkzeug

@@ -2,7 +2,6 @@ import os
 import spotipy
 from spotipy import SpotifyOAuth
 from dotenv import load_dotenv
-import json
 import pandas as pd
 import pandas as pd
 from pycaret.classification import *
