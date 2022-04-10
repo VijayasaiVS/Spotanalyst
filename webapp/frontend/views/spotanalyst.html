@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="{{url_for('static', filename='./img/spotanalyst.svg')}}"
+      type="image/icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='./styles/spotanalyst.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <script src="{{url_for('static',filename='./views/index.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Spotanalyst</title>
+
+    <style>
+      .song_info {
+        background: {{dominant_color+'73'}};
+        box-shadow: 4px 8px 48px 4px {{dominant_color+'ff'}};
+      }
+      .profile_pic {
+        background-image: url("{{dp}}");
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="blob">
+    <h1 class="title">Profile Info</h1>
+    <div class="profile_info">
+      <div class="profile_pic"></div>
+      <div class="btn_family">
+      <form method="GET" action="/spotanalyst">
+        <button type="submit" id="reload_button"><i class="fas fa-sync-alt"></i>&emsp;Reload</button>
+      </form>
+      <form method="GET" action="/analysis/playlist">
+        <button type="submit" id="analysis_button">Get Playlist</button>
+      </form>
+      <form method="GET" action="/analysis/library">
+        <button type="submit" id="analysis_button">Get Library Data</button>
+      </form>
+      </div><br><br>
+      </div>
+      <div class="profile_details">
+      <h2>Name: {{display_name}}</h1>
+      <h2>Username: {{username}}</h2>
+      <h2>Profile Link: <a href="{{profile_url}}" target="_blank">{{display_name}}</a></h2>
+      <h2>Followers: {{followers}}</h2>
+    </div>
+    <h1 class="title2">Current Playing</h1>
+    <div class="song_info">
+      <div class="song_details">
+        <img
+          src="{{current_song_cover}}"
+          class="song_cover"
+          alt="Song Cover"
+          width="360px"
+          height="360px"
+        />
+        <div class="current_song_details">
+          <!-- <button type="button">Connect to Spotify</button> -->
+          <h2>Song: {{current_playing}}</h2><br>
+          <h2>Artist: {{current_artist}}</h2><br><br>
+          <h2>Track ID: {{current_id}}</h2><br>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

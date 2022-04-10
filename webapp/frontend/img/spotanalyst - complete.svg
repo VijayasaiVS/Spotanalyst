@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="856" height="128" viewBox="0 0 856 128">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-spotanalyst_-_complete_);
+      }
+
+      .cls-2, .cls-3 {
+        fill: #1db954;
+      }
+
+      .cls-3 {
+        font-size: 100px;
+        font-family: Ubuntu-Bold, Ubuntu;
+        font-weight: 700;
+      }
+    </style>
+    <clipPath id="clip-spotanalyst_-_complete_">
+      <rect width="856" height="128"/>
+    </clipPath>
+  </defs>
+  <g id="spotanalyst_-_complete_" data-name="spotanalyst - complete " class="cls-1">
+    <g id="Spotanalyst" transform="translate(-480 -170)">
+      <rect id="Rectangle_1" data-name="Rectangle 1" class="cls-2" width="128" height="128" rx="64" transform="translate(480 170)"/>
+      <path id="Icon_metro-chart-dots" data-name="Icon metro-chart-dots" d="M11.135,60.779H71.082v8.407H2.571V1.928h8.564Zm10.7-4.2a6.307,6.307,0,1,1,0-12.611c.189,0,.376.01.561.025l6.9-11.3a6.192,6.192,0,0,1-1.042-3.442,6.424,6.424,0,0,1,12.846,0,6.192,6.192,0,0,1-1.042,3.442l6.9,11.3q.28-.025.561-.025c.143,0,.284.006.425.015L59.354,24.4a6.2,6.2,0,0,1-1.118-3.554,6.424,6.424,0,1,1,6.423,6.306c-.143,0-.284-.006-.425-.015l-11.4,19.581a6.2,6.2,0,0,1,1.118,3.554,6.424,6.424,0,0,1-12.846,0,6.193,6.193,0,0,1,1.042-3.442l-6.9-11.3c-.185.016-.372.025-.561.025s-.376-.01-.561-.025l-6.9,11.3a6.191,6.191,0,0,1,1.042,3.442,6.365,6.365,0,0,1-6.423,6.306Z" transform="translate(507.174 198.443)"/>
+      <text id="SPOTANALYST-2" data-name="SPOTANALYST" class="cls-3" transform="translate(621 271)"><tspan x="0" y="0">SPOTANALYST</tspan></text>
+    </g>
+  </g>
+</svg>
