@@ -1,0 +1,4 @@
+KAGGLE_CREDS = {
+    "KAGGLE_USERNAME":"",
+    "KAGGLE_KEY" : ""
+}
