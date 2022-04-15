@@ -1,22 +1,26 @@
 import os
 import spotipy
 from spotipy import SpotifyOAuth
-from dotenv import load_dotenv
-import json
+# from dotenv import load_dotenv
 import pandas as pd
-from sklearn import preprocessing
-import pandas as pd
-import plotly.express as px
 from pycaret.classification import *
-#Importing Secure Keys using ENV (dotenv) Module
-load_dotenv()
+from colorthief import ColorThief
+import urllib.request
+from config import *
+import sys
 
+#Importing Secure Keys using ENV (dotenv) Module
+# load_dotenv()
+imgloc= os.path.join(IMAGE_LOC,"current_song_cover.jpg")
+modelloc = MODELLOC
+if modelloc == 0:
+    sys.exit(1)
 #User Credentials
-client_id=os.getenv('SPOTIFY_CLIENT_ID')
-client_secret=os.getenv('SPOTIFY_CLIENT_SECRET')
-redirect_uri=os.getenv('REDIRECT_URI')
+client_id = SPOTIFY_CLIENT_ID
+client_secret = SPOTIFY_CLIENT_SECRET
+redirect_uri = SPOTIFY_REDIRECT_URL
 #Spotify Token Authentication
-scope = os.getenv('SCOPES')
+scope = SPOTIFY_SCOPES
     
 sp=spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,client_secret=client_secret,
                                                 redirect_uri=redirect_uri, scope=scope))
@@ -41,9 +45,10 @@ def get_current_song(sp):
     if current_song==None:
         return None
     current_playing=current_song['item']['name']
+    current_artist=current_song["item"]["album"]["artists"][0]["name"]
     current_song_id= current_song['item']['uri']
     current_song_cover=current_song["item"]["album"]["images"][0]["url"]
-    return current_playing,current_song_id,current_song_cover
+    return current_playing,current_artist,current_song_id,current_song_cover
     # print(current_playing,current_song_id,current_song_cover)
     
 
@@ -73,8 +78,10 @@ def get_features_playlist(tracks,sp):
                                             acousticness=f['acousticness'],
                                             danceability=f['danceability'],
                                             liveness=f['liveness'],
-                                            loudness=f['loudness'],
-                                            speechiness=f['speechiness']
+                                            energy=f['energy'],
+                                            speechiness=f['speechiness'],
+                                            instrumentalness = f['instrumentalness'],
+                                            valence = f['valence']
                                             ))
 
         # time.sleep(0.1)
@@ -115,15 +122,9 @@ def get_library_data(sp):
     return tracks_csv
 
 def predict_data(df):
-    data=df
-    from sklearn import preprocessing
-    loudness=data[['loudness']].values
-    min_max_scaler=preprocessing.MinMaxScaler()
-    loudness_scaled=min_max_scaler.fit_transform(loudness)
-    data['loudness']=pd.DataFrame(loudness_scaled)
-    spotanalyst=load_model('..\prediction\model\songanalysis_model')
-    predicted_df=predict_model(spotanalyst,data=data)
-    predicted_df.to_csv(r'predicted_playlist_data.csv',index=False)
+    spotanalyst=load_model(modelloc)
+    print(df)
+    predicted_df=predict_model(spotanalyst,data=df)
     return predicted_df
 
 def get_library(sp):
@@ -137,3 +138,13 @@ def get_library(sp):
             saved_tracks.append(dict(name=i["track"]["name"],id=i["track"]["id"],artist=i["track"]["artists"][0]["name"]))
     
     return saved_tracks
+
+def imagecolor(imgurl):
+    urllib.request.urlretrieve(imgurl,imgloc)
+    color_thief = ColorThief(imgloc)
+    # get the dominant color
+    dominant_color = color_thief.get_color(quality=1)
+    print(dominant_color)
+    hexcode = '#%02x%02x%02x' % dominant_color
+    print(hexcode)
+    return hexcode

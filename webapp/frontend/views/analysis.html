@@ -9,13 +9,20 @@
       href="{{url_for('static', filename='./img/spotanalyst.svg')}}"
       type="image/icon"
     />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='./styles/analysis.css')}}"
+    />
     <title>Analysis</title>
   </head>
 
   <body>
-    <div>
-      <!-- <button type="button">Connect to Spotify</button> -->
-      <h1>{{extract}}</h1>
+    <h2>{{extract}}</h2>
+    <img
+      src="https://i.pinimg.com/originals/90/aa/3a/90aa3a0208c1d4f8c1c5baac94ff31b4.gif"
+      alt="Success"
+    />
+    <div class="btns">
       <form method="GET" action="/analysis">
         <button type="submit" id="reload_button">Reload</button>
       </form>
@@ -23,14 +30,19 @@
         <button type="submit" id="analysis_button">Home</button>
       </form>
       <form method="GET" action="/spotanalyst">
-        <button type="submit" id="analysis_button">Profile</button> 
+        <button type="submit" id="analysis_button">Profile</button>
       </form>
       <form action="/download/csv" class="basic_details download">
         <button type="submit">Download Predicted File</button>
       </form>
+    </div>
+    <div class="charts">
       <div>{{plot1 | safe}}</div>
+      <br />
       <div>{{plot2 | safe}}</div>
+      <br />
       <div>{{plot3 | safe}}</div>
+      <br />
     </div>
   </body>
 </html>

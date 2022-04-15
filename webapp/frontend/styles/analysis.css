@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap");
+::-moz-selection {
+  background: #1db954;
+}
+::selection {
+  background: #1db954;
+}
+
+body {
+  padding: 2rem 2rem;
+  font-family: "Ubuntu", sans-serif;
+  margin: 0rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #fff8dc;
+}
+
+.title {
+  text-align: center;
+  color: #1db954;
+  text-transform: uppercase;
+  font-size: 40px;
+  letter-spacing: 1.5rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1db954;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1e8843;
+}
+
+.btns {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.btns button[type="submit"] {
+  border-radius: 5rem;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  background: #1db954;
+  border: none;
+  margin: 2rem;
+  padding: 1rem;
+  font-weight: bold;
+  height: 5rem;
+  width: 15rem;
+  font-size: larger;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btns button[type="submit"]:hover {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  background-color: transparent;
+  border: 2px solid #1db954;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+/*# sourceMappingURL=analysis.css.map */

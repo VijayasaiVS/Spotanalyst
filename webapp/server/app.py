@@ -1,33 +1,24 @@
 from flask import *
-from dotenv import load_dotenv
 import os
 import time
-from numpy.lib.function_base import extract
 import module as md
 import spotipy
 import pandas as pd
-import shutil
-from werkzeug.utils import secure_filename
-import json
 import chart_studio
 import chart_studio.plotly as py
 import chart_studio.tools as tls
 import plotly.express as px
-import spotipy.util as util
-from spotipy.oauth2 import SpotifyOAuth
-load_dotenv()
+from config import *
 
 
-username=os.getenv('PLOT_USERNAME')
-plot_api=os.getenv('PLOT_API')
-chart_studio.tools.set_credentials_file(username=username,api_key=plot_api)
-fileloc=os.getenv('FILESERVER')
+chart_studio.tools.set_credentials_file(username=PLOTLY_CREDS["PLOT_USERNAME"],api_key=PLOTLY_CREDS["PLOT_API_KEY"])
+fileloc=FILESERVER_LOC
 
 app=Flask(__name__,static_folder='../frontend',template_folder='../frontend/views')
 
-app.config['SESSION_TYPE']=os.getenv('SESSION_TYPE')    
+app.config['SESSION_TYPE'] = SESSION_TYPE    
 app.config.update(
-    SECRET_KEY=''+os.getenv('SECRET_KEY')
+    SECRET_KEY = SECRET_KEY
 )
 
 
@@ -65,9 +56,10 @@ def welcome():
     if not md.get_current_song(sp):
         return render_template('spotanalyst.html')
     else:
-        current_playing,current_song_id,current_song_cover=md.get_current_song(sp)
+        current_playing,current_artist,current_song_id,current_song_cover=md.get_current_song(sp)
         display_name,username,dp,profile_url,followers=md.get_userdetails(sp)
         session['username']=username
+        dominant_color=md.imagecolor(current_song_cover)
         # return current_song
         render_content={
                         'display_name':display_name,
@@ -76,8 +68,10 @@ def welcome():
                         'profile_url':profile_url,
                         'followers':followers,
                         'current_playing':current_playing,
+                        'current_artist':current_artist,
                         'current_id':current_song_id,
-                        'current_song_cover':current_song_cover
+                        'current_song_cover':current_song_cover,
+                        'dominant_color':dominant_color
                         }
         return render_template('spotanalyst.html',**render_content)
     
@@ -102,7 +96,8 @@ def analysis_playlist():
     plot2=py.plot(plot2,filename='Category of Songs with Prediction Score',auto_open=False)
     fig2=tls.get_embed(plot2)
     features=[predicted_df['acousticness'],predicted_df['danceability'],
-                predicted_df['liveness'],predicted_df['loudness'],predicted_df['speechiness']]
+                predicted_df['liveness'],predicted_df['energy'],predicted_df['speechiness'],predicted_df['instrumentalness'],
+                predicted_df['valence']]
     plot3=px.bar(predicted_df,x=predicted_df['name'],
                 y=features,title='All Songs with its Features')
     plot3=py.plot(plot3,filename='All Songs with its Features',auto_open=False)
@@ -132,7 +127,8 @@ def analysis_library():
     plot2=py.plot(plot2,filename='Category of Songs with Prediction Score',auto_open=False)
     fig2=tls.get_embed(plot2)
     features=[predicted_df['acousticness'],predicted_df['danceability'],
-                predicted_df['liveness'],predicted_df['loudness'],predicted_df['speechiness']]
+                predicted_df['liveness'],predicted_df['energy'],predicted_df['speechiness'],predicted_df['instrumentalness'],
+                predicted_df['valence']]
     plot3=px.bar(predicted_df,x=predicted_df['name'],
                 y=features,title='All Songs with its Features')
     plot3=py.plot(plot3,filename='All Songs with its Features',auto_open=False)
@@ -142,7 +138,7 @@ def analysis_library():
 
 @app.route("/download/csv")
 def download():
-    return send_from_directory(directory=fileloc, filename='predicted_data.csv',as_attachment=True)
+    return send_from_directory(directory=fileloc, path='predicted_data.csv',as_attachment=True)
 
 
 # Checks to see if token is valid and gets a new token if not
@@ -168,4 +164,4 @@ def get_token(session):
     return token_info, token_valid
 
 if __name__ == '__main__':
-    app.run(host=os.getenv('HOSTNAME'),port=os.getenv('PORT'),debug=True)
+    app.run(host=HOSTNAME,port=PORT,debug=True)
